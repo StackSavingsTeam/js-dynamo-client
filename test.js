@@ -1,8 +1,9 @@
 'use strict'
 
-const dynamoDB = require('./dynamoDB.js')
+const dynamoDB = require('@stacksavings/dynamodb')
 const logger = require('@stacksavings/utils').log()
-
+logger.info(dynamoDB.insertItemBatch())
+return
 const parametros = {
   TableName: "Test"
 }

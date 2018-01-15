@@ -42,7 +42,7 @@ const dynamoDB = {
       })
     })
   },
-  insertItemBatch: (parametros) => {
+  insertItemsBath: (parametros) => {
     return new Promise((resolve, reject) => {
       documentClient.batchWrite(parametros, (err, data) => {
         response(resolve, reject, err, data, 'Insert success!')

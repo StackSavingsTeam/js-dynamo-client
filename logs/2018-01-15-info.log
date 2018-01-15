@@ -1,1 +1,6 @@
 {"code":true,"message":"Table \"Test\" deleted!","data":{"TableDescription":{"TableName":"Test","TableStatus":"DELETING","ProvisionedThroughput":{"NumberOfDecreasesToday":0,"ReadCapacityUnits":100,"WriteCapacityUnits":100},"TableSizeBytes":0,"ItemCount":0,"TableArn":"arn:aws:dynamodb:us-east-1:281171835363:table/Test","TableId":"21f71a7a-dbc6-486a-b1ab-194f5944387c"}},"level":"info","timestamp":"21:30:06"}
+{"level":"info","message":"","timestamp":"12:34:17"}
+{"level":"info","message":"","timestamp":"12:34:26"}
+{"level":"info","message":"Promise {\n  <rejected> { code: false,\n  message: 'Missing required key \\'RequestItems\\' in params Codigo: MissingRequiredParameter Estatus: undefined' } }","timestamp":"12:35:40"}
+{"level":"info","message":"Promise {\n  <rejected> { code: false,\n  message: 'Missing required key \\'RequestItems\\' in params Codigo: MissingRequiredParameter Estatus: undefined' } }","timestamp":"12:37:35"}
+{"level":"info","message":"Promise {\n  <rejected> { code: false,\n  message: 'Missing required key \\'RequestItems\\' in params Codigo: MissingRequiredParameter Estatus: undefined' } }","timestamp":"12:37:41"}
