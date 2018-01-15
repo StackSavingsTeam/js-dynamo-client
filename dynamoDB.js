@@ -51,15 +51,15 @@ const dynamoDB = {
   },
   getItems: (params) => {
     return new Promise((resolve, reject) => {
-      awsdb.query(params, (err, data) => {
-        respuestaDynamodb(resolve, reject, err, data, 'Query done!')
+      documentClient.query(params, (err, data) => {
+        response(resolve, reject, err, data, 'Query done!')
       })
     })
   },
   scanItems: (params) => {
     return new Promise((resolve, reject) => {
-      awsdb.scan(params, (err, data) => {
-        respuestaDynamodb(resolve, reject, err, data, 'Scan done!')
+      documentClient.scan(params, (err, data) => {
+        response(resolve, reject, err, data, 'Scan done!')
       })
     })
   }

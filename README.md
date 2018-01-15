@@ -132,8 +132,6 @@ promise.then(data => {
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
 
 ```
-'use strict'
-
 const uuid = require('uuid')
 const dynamoDB = require('@stacksavings/dynamodb')
 const logger = require('@stacksavings/utils').log()
@@ -178,6 +176,36 @@ promise.then(data => {
 {
   code: true,
   message: "Insert success!"
+}
+```
+
+* <b>scanItems:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns the records that match a query to the table.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+
+```
+const dynamoDB = require('@stacksavings/dynamodb')
+const logger = require('@stacksavings/utils').log()
+
+const parameters = {
+  TableName: 'Test',
+  AttributesToGet: [ "currencyPair", "otherfield", ... ]
+}
+
+const promise = dynamoDB.scanItems(parameters)
+promise.then(data => {
+  logger.info(data)
+}, err => {
+  logger.error(err)
+})
+
+```
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+```
+{
+  code: true,
+  message: "Scan done!",
+  Items: <Field data>
 }
 ```
 
