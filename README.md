@@ -6,28 +6,27 @@
 
 # Stacksavings - DynamoDB Client
 
-Hemos creado un paquete <b>"@stacksavings/dynamoDB"</b> para poder usar los metodos de interacción con la bade de datos DynamoDB.
+Hemos creado un paquete <b>"@stacksavings/dynamodb"</b> para poder usar los metodos de interacción con la bade de datos DynamoDB.
 
 ## Table of contents
 
 - [Installing](#Installing)
 - [Usage](#Installing)
-- [Public API Methods](#Installing)
-- [Trading API Methods](#Installing)
+- [Methods](#Installing)
 
 ## Getting Started
 
 ### Installing
 Para poder instalar el cliente solo basta con ejecutar el comando:
 ```
-npm i @stacksavings/poloniex-client
+npm i @stacksavings/dynamodb
 ```
 ### Usage
 Para empezar a usarlo solo debe de incluirlo en tu código asi:
 ```
-const client = require('@stacksavings/poloniex-client')
+const dynamoDB = require('@stacksavings/dynamodb')
 ```
-### Public API Methods
+### Methods
 
 * <b>currenciesAvailable:</b>
 
@@ -101,96 +100,6 @@ ChartData.then(data => {
   },
   ...
 ]
-```
-
-### Trading API Methods
-Estos métodos requieren el <b>"Key"</b> y <b>"Secret"</b> asociado a la organización Stacksavings.
-</br>
-
-* <b>buy:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Coloca una orden de compra límite en un mercado determinado. Los parámetros necesarios son "currencyPair", "rate" y "amount". Si tiene éxito, el método devolverá el número de orden.</p>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
-
-```
-const logger = require('@stacksavings/utils').log()
-const client = require(@stacksavings/poloniex-client)
-
-let parameters = {
-  currencyPair: 'BTC_ETH',
-  amount: 0.008,
-  rate: 0.058,
-}
-let credentials = {
-  key: 'KEY STRING',
-  secret: 'SECRET STRING'
-}
-
-const buyer = client.buy(parameters,credentials)
-buyer.then(data => {
-  logger.info(data);
-}, err => {
-  logger.error(err);
-})
-```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
-```
-{
-  "orderNumber":31226040,
-  "resultingTrades":[
-                     {
-                      "amount":"338.8732",
-                      "date":"2014-10-18 23:03:21",
-                      "rate":"0.00000173",
-                      "total":"0.00058625",
-                      "tradeID":"16164",
-                      "type":"buy"
-                     }
-                    ]
-}
-```
-
-* <b>sell:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Coloca una orden de venta en un mercado determinado. Los parámetros necesarios son "currencyPair", "rate" y "amount". Si tiene éxito, el método devolverá el número de orden.</p>
-
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
-
-```
-const logger = require('@stacksavings/utils').log()
-const client = require(@stacksavings/poloniex-client)
-
-let parameters = {
-  currencyPair: 'BTC_ETH',
-  amount: 0.008,
-  rate: 0.058,
-}
-let credentials = {
-  key: 'KEY STRING',
-  secret: 'SECRET STRING'
-}
-
-const seller = client.sell(parameters,credentials)
-buyer.then(data => {
-  logger.info(data);
-}, err => {
-  logger.error(err);
-})
-```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
-```
-{
-  "orderNumber":31226040,
-  "resultingTrades":[
-                     {
-                      "amount":"338.8732",
-                      "date":"2014-10-18 23:03:21",
-                      "rate":"0.00000173",
-                      "total":"0.00058625",
-                      "tradeID":"16164",
-                      "type":"sell"
-                     }
-                    ]
-}
 ```
 ### Creators
 

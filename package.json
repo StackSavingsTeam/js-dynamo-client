@@ -1,6 +1,6 @@
 {
-  "name": "@stacksavings/dynamoDB",
-  "version": "1.0.0",
+  "name": "@stacksavings/dynamodb",
+  "version": "1.0.1",
   "description": "DynamoDB Client",
   "main": "dynamoDB.js",
   "scripts": {
