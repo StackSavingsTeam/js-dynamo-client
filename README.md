@@ -93,44 +93,46 @@ promise.then(data => {
       }
 }
 ```
-* <b>returnChartData:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns candlestick chart data. Required GET parameters are "currencyPair", "period" (candlestick period in seconds; valid values are 300, 900, 1800, 7200, 14400, and 86400), "start", and "end". "Start" and "end" are given in UNIX timestamp format and used to specify the date range for the data returned.</p>
+* <b>deleteTable:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Delete a table from database.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
 
 ```
+const dynamoDB = require('@stacksavings/dynamodb')
 const logger = require('@stacksavings/utils').log()
-const client = require('./poloniex-client')
-const TimeStamp = require('@stacksavings/utils')
 
-let parameters = {
-  currencyPair: "BTC_LTC",
-  period: 14400,
-  start: TimeStamp.toTimeStampUnix(20171218),
-  end: TimeStamp.toTimeStampUnix(20171219)
+const parameters = {
+  TableName: "Test"
 }
 
-const ChartData = client.returnChartData(parameters)
-ChartData.then(data => {
-  logger.info(data);
+const promise = dynamoDB.deleteTable(parametros)
+promise.then(data => {
+  logger.info(data)
 }, err => {
-  logger.error(err);
+  logger.error(err)
 })
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
 ```
-[
-  {
-    "date":1405699200,
-    "high":0.0045388,
-    "low":0.00403001,
-    "open":0.00404545,
-    "close":0.00427592,
-    "volume":44.11655644,
-    "quoteVolume":10259.29079097,
-    "weightedAverage":0.00430015
-  },
-  ...
-]
+{
+  code: true,
+  message: "Table <TABLE NAME> deleted!",
+  data: {
+         "TableDescription":{
+           "TableName":"Test",
+           "TableStatus":"DELETING",
+           "ProvisionedThroughput":{
+             "NumberOfDecreasesToday":0,
+             "ReadCapacityUnits":100,
+             "WriteCapacityUnits":100
+           },
+           "TableSizeBytes":0,
+           "ItemCount":0,
+           "TableArn":"arn:aws:dynamodb:us-east-1:281171835363:table/Test",
+           "TableId":"21f71a7a-dbc6-486a-b1ab-194f5944387c"
+         }
+        }
+}
 ```
 ### Creators
 
