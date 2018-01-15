@@ -180,7 +180,7 @@ promise.then(data => {
 ```
 
 * <b>scanItems:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns the records that match a query to the table.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns one or more items and item attributes by accessing every item in a table.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
 
 ```
@@ -189,7 +189,7 @@ const logger = require('@stacksavings/utils').log()
 
 const parameters = {
   TableName: 'Test',
-  AttributesToGet: [ "currencyPair", "otherfield", ... ]
+  AttributesToGet: [ "currencyPair", "id", ... ]
 }
 
 const promise = dynamoDB.scanItems(parameters)
@@ -205,6 +205,42 @@ promise.then(data => {
 {
   code: true,
   message: "Scan done!",
+  Items: <Field data>
+}
+```
+* <b>getItems:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Finds items based on primary key values.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+
+```
+const dynamoDB = require('@stacksavings/dynamodb')
+const logger = require('@stacksavings/utils').log()
+
+const parameters = {
+      TableName: "Test",
+      ProjectionExpression: "currencyPair",
+      ExpressionAttributeNames:{
+          "#id": "id"
+      },
+      ExpressionAttributeValues: {
+        ':id': '1cedd7a0-fa26-11e7-81e3-23cdc36fe8fb'
+      },
+      KeyConditionExpression: '#id = :id'
+    }
+
+const promise = dynamoDB.getItems(parameters)
+promise.then(data => {
+  logger.info(data)
+}, err => {
+  logger.error(err)
+})
+
+```
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+```
+{
+  code: true,
+  message: "Query done!",
   Items: <Field data>
 }
 ```
