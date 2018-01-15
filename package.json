@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StackSavingsTeam/js-utils.git"
+    "url": "git+https://github.com/StackSavingsTeam/js-dynamo-client.git"
   },
   "author": "Stacksavings (https://site.stacksavings.com)",
   "maintainers": [
@@ -16,9 +16,9 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/StackSavingsTeam/js-utils/issues"
+    "url": "https://github.com/StackSavingsTeam/js-dynamo-client/issues"
   },
-  "homepage": "https://github.com/StackSavingsTeam/js-utils#readme",
+  "homepage": "https://github.com/StackSavingsTeam/js-dynamo-client#readme",
    "dependencies" : {
      "aws-sdk": "2.175.0"
   }

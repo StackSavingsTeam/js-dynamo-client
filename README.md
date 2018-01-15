@@ -4,9 +4,9 @@
   <a href="https://site.stacksavings.com/"><strong>Visit our homepage »</strong></a>
 </p>
 
-# Stacksavings - Poloniex Client
+# Stacksavings - DynamoDB Client
 
-Hemos creado un paquete <b>"@stacksavings/poloniex-client"</b> para poder usar los metodos de Public y Trading API de Poloniex.
+Hemos creado un paquete <b>"@stacksavings/dynamoDB"</b> para poder usar los metodos de interacción con la bade de datos DynamoDB.
 
 ## Table of contents
 
