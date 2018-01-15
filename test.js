@@ -1,11 +1,10 @@
 'use strict'
-const uuid = require('uuid')
-const crudDynamoDB = require('./crudDynamoDB.js')
-const logger = require('../utils/Logger')
-const t =  require('../Definitions/TableNames')
+
+const dynamoDB = require('./dynamoDB.js')
+const logger = require('@stacksavings/utils').log()
 
 const parametros = {
-  TableName: t.currencies,
+  TableName: "Test",
   KeySchema: [
               { AttributeName: "currencyPair", "KeyType": "HASH" }
     ],
@@ -18,10 +17,10 @@ const parametros = {
   }
 }
 
-const promise = crudDynamoDB.createTable(parametros)
+const promise = dynamoDB.deleteTable(parametros)
 
 promise.then(data => {
-  logger.info(data.mensaje_respuesta)
+  logger.info(data)
 }, err => {
-  logger.error(err.mensaje_respuesta)
+  logger.error(err)
 })
