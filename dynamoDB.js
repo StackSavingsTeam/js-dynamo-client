@@ -21,30 +21,30 @@ const response = (resolve, reject, err, data, customMsj) => {
 }
 
 const dynamoDB = {
-  createTable: (parametros) => {
+  createTable: (params) => {
     return new Promise((resolve, reject) => {
-      awsdb.createTable(parametros, (err, data) => {
-        response(resolve, reject, err, data, 'Table ' + parametros.TableName + ' created!')
+      awsdb.createTable(params, (err, data) => {
+        response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
       })
     })
   },
-  deleteTable: (parametros) => {
+  deleteTable: (params) => {
     return new Promise((resolve, reject) => {
-      awsdb.deleteTable(parametros, (err, data) => {
-        response(resolve, reject, err, data, 'Table "' + parametros.TableName + '" deleted!')
+      awsdb.deleteTable(params, (err, data) => {
+        response(resolve, reject, err, data, 'Table "' + params.TableName + '" deleted!')
       })
     })
   },
-  insertItems: (parametros) => {
+  insertItems: (params) => {
     return new Promise((resolve, reject) => {
-      documentClient.put(parametros, (err, data) => {
+      documentClient.put(params, (err, data) => {
         response(resolve, reject, err, data, 'Insert success!')
       })
     })
   },
-  insertItemsBath: (parametros) => {
+  insertItemsBath: (params) => {
     return new Promise((resolve, reject) => {
-      documentClient.batchWrite(parametros, (err, data) => {
+      documentClient.batchWrite(params, (err, data) => {
         response(resolve, reject, err, data, 'Insert success!')
       })
     })

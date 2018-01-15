@@ -40,10 +40,10 @@ const logger = require('@stacksavings/utils').log()
 const parameters = {
   TableName: "Test",
   KeySchema: [
-              { AttributeName: "currencyPair", "KeyType": "HASH" }
+              { AttributeName: "id", "KeyType": "HASH" }
     ],
   AttributeDefinitions: [
-      { AttributeName: "currencyPair", "AttributeType": "S" }
+      { AttributeName: "id", "AttributeType": "S" }
     ],
   ProvisionedThroughput: {
       "ReadCapacityUnits": 100,
@@ -67,14 +67,14 @@ promise.then(data => {
          "TableDescription":{
            "AttributeDefinitions":[
              {
-              "AttributeName":"currencyPair",
+              "AttributeName":"id",
               "AttributeType":"S"
              }
            ],
            "TableName":"Test",
            "KeySchema":[
            {
-             "AttributeName":"currencyPair",
+             "AttributeName":"id",
              "KeyType":"HASH"
            }
           ],
@@ -93,6 +93,94 @@ promise.then(data => {
       }
 }
 ```
+* <b>insertItems:</b>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Create a new record in an existing table.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+
+```
+const uuid = require('uuid')
+const dynamoDB = require('@stacksavings/dynamodb')
+const logger = require('@stacksavings/utils').log()
+
+var timeStamp = String(Math.floor(Date.now() / 1000));
+const parameters = {
+  TableName: "Test",
+  Item: {
+      id: uuid.v1(),
+      currencyPair: "BTC_ETH",
+      timestamp: timeStamp
+  }
+}
+
+const promise = dynamoDB.insertItems(parameters)
+promise.then(data => {
+  logger.info(data)
+}, err => {
+  logger.error(err)
+})
+```
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+```
+{
+  code: true,
+  message: "Insert success!"
+}
+```
+* <b>insertItemsBath:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Create multiple records in an existing table.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+
+```
+'use strict'
+
+const uuid = require('uuid')
+const dynamoDB = require('@stacksavings/dynamodb')
+const logger = require('@stacksavings/utils').log()
+
+var timeStamp = String(Math.floor(Date.now() / 1000));
+const parameters = {
+  RequestItems: {
+      "Test": [
+          {
+            PutRequest: {
+              Item: {
+                  id: uuid.v1(),
+                  currencyPair: "BTC_ETH",
+                  timestamp: timeStamp
+              }
+            }
+          },
+          {
+            PutRequest: {
+              Item: {
+                  id: uuid.v1(),
+                  currencyPair: "BTC_ETH2",
+                  timestamp: timeStamp
+              }
+            }
+          },
+          ...
+        ]
+  }
+}
+
+const promise = dynamoDB.insertItemsBath(parameters)
+promise.then(data => {
+  logger.info(data)
+}, err => {
+  logger.error(err)
+})
+
+```
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+```
+{
+  code: true,
+  message: "Insert success!"
+}
+```
+
 * <b>deleteTable:</b>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;Delete a table from database.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>

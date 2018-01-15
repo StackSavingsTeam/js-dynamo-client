@@ -2,14 +2,12 @@
 
 const dynamoDB = require('@stacksavings/dynamodb')
 const logger = require('@stacksavings/utils').log()
-logger.info(dynamoDB.insertItemBatch())
-return
-const parametros = {
+
+const parameters = {
   TableName: "Test"
 }
 
-const promise = dynamoDB.deleteTable(parametros)
-
+const promise = dynamoDB.deleteTable(parameters)
 promise.then(data => {
   logger.info(data)
 }, err => {
