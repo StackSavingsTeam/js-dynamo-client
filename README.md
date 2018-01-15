@@ -28,38 +28,69 @@ const dynamoDB = require('@stacksavings/dynamodb')
 ```
 ### Methods
 
-* <b>currenciesAvailable:</b>
+* <b>createTable:</b>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns information about currencies.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Create a new table in the database.</p>
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
 
 ```
+const dynamoDB = require('@stacksavings/dynamodb')
 const logger = require('@stacksavings/utils').log()
-const client = require(@stacksavings/poloniex-client)
-const currencies = client.currenciesAvailable()
 
-currencies.then(data => {
-  logger.info(data);
+const parameters = {
+  TableName: "Test",
+  KeySchema: [
+              { AttributeName: "currencyPair", "KeyType": "HASH" }
+    ],
+  AttributeDefinitions: [
+      { AttributeName: "currencyPair", "AttributeType": "S" }
+    ],
+  ProvisionedThroughput: {
+      "ReadCapacityUnits": 100,
+      "WriteCapacityUnits": 100
+  }
+}
+
+const promise = dynamoDB.createTable(parametros)
+promise.then(data => {
+  logger.info(data)
 }, err => {
-  logger.error(err);
+  logger.error(err)
 })
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
 ```
 {
-  "1CR":{
-         "maxDailyWithdrawal":10000,
-         "txFee":0.01,
-         "minConf":3,
-         "disabled":0
-        },
-  "ABY":{
-         "maxDailyWithdrawal":10000000,
-         "txFee":0.01,
-         "minConf":8,
-         "disabled":0
-        },
-   ...
+  code: true,
+  message: "Table <TABLE NAME> created!",
+  data: {
+         "TableDescription":{
+           "AttributeDefinitions":[
+             {
+              "AttributeName":"currencyPair",
+              "AttributeType":"S"
+             }
+           ],
+           "TableName":"Test",
+           "KeySchema":[
+           {
+             "AttributeName":"currencyPair",
+             "KeyType":"HASH"
+           }
+          ],
+          "TableStatus":"CREATING",
+          "CreationDateTime":"2018-01-15T00:47:17.262Z",
+          "ProvisionedThroughput":{
+            "NumberOfDecreasesToday":0,
+            "ReadCapacityUnits":100,
+            "WriteCapacityUnits":100
+          },
+          "TableSizeBytes":0,
+          "ItemCount":0,
+          "TableArn":"arn:aws:dynamodb:us-east-1:281171835363:table/Test",
+          "TableId":"21f71a7a-dbc6-486a-b1ab-194f5944387c"
+        }
+      }
 }
 ```
 * <b>returnChartData:</b>

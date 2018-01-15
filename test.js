@@ -17,7 +17,7 @@ const parametros = {
   }
 }
 
-const promise = dynamoDB.deleteTable(parametros)
+const promise = dynamoDB.createTable(parametros)
 
 promise.then(data => {
   logger.info(data)
