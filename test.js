@@ -28,7 +28,7 @@ describe("Tests for DynamoDB", () => {
 
 	after(() => {
 		it('Should be delete table', () =>{
-			const param = {
+			const params = {
 				TableName: 'TestDynamoDB'
 			}
 			const deleteTable =  dynamo.deleteTable(params)
