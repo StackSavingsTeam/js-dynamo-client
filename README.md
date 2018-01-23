@@ -295,3 +295,8 @@ promise.then(data => {
 
 <b>David Molina</b>
 * <a href="https://dmolina101.github.io">https://dmolina101.github.io</a>
+
+</br>
+
+<b>Hendrix Roa</b>
+* <a href="https://hendrixroa.github.io">Site hendrixroa</a>
