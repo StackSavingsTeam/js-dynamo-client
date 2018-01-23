@@ -80,7 +80,7 @@ describe("Tests for DynamoDB", () => {
 		}
 		const scanItem =  dynamo.scanItems(params)
 			scanItem.then( res => {
-				assert.equal(true, res.code)
+				assert.isNumber(res.data.Count)
 			}).catch( err => {
 			})
 	})
