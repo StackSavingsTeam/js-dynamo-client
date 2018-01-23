@@ -27,14 +27,17 @@ describe("Tests for DynamoDB", () => {
 	})
 
 	after(() => {
-		const param = {
-			TableName: 'TestDynamoDB'
-		}
-		const deleteTable =  dynamo.deleteTable(params)
-			deleteTable.then( res => {
-				assert.equal(true, res.code)
-			}).catch( err => {
-			})
+		it('Should be delete table', () =>{
+			const param = {
+				TableName: 'TestDynamoDB'
+			}
+			const deleteTable =  dynamo.deleteTable(params)
+				deleteTable.then( res => {
+					assert.equal(true, res.code)
+				}).catch( err => {
+				})
+		})
+		
 	})
 		
 })
