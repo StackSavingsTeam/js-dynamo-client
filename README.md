@@ -51,7 +51,7 @@ const parameters = {
   }
 }
 
-const promise = dynamoDB.createTable(parametros)
+const promise = dynamoDB.createTable(parameters)
 promise.then(data => {
   logger.info(data)
 }, err => {
@@ -257,7 +257,7 @@ const parameters = {
   TableName: "Test"
 }
 
-const promise = dynamoDB.deleteTable(parametros)
+const promise = dynamoDB.deleteTable(parameters)
 promise.then(data => {
   logger.info(data)
 }, err => {
