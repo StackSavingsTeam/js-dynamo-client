@@ -62,6 +62,13 @@ const dynamoDB = {
         response(resolve, reject, err, data, 'Scan done!')
       })
     })
+  },
+  deleteItems: (params) => {
+	return new Promise((resolve, reject) => {
+	  documentClient.delete(params, (err, data)=> {
+        response(resolve, reject, err, data, 'Item deleted!')
+      })
+	})
   }
 
 }
