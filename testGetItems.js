@@ -1,6 +1,7 @@
 'use strict'
 
-const dynamoDB = require('@stacksavings/dynamodb')
+//const dynamoDB = require('@stacksavings/dynamodb')
+const dynamoDB = require('./dynamoDB')
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -15,7 +16,7 @@ const parameters = {
       KeyConditionExpression: '#id = :id'
     }
 
-const promise = dynamoDB.getItems(parameters)
+const promise = dynamoDB.e(parameters)
 promise.then(data => {
   logger.info(data)
 }, err => {

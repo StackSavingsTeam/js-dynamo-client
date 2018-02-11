@@ -10,31 +10,65 @@ Hemos creado un paquete <b>"@stacksavings/dynamodb"</b> para poder usar los meto
 
 ## Table of contents
 
-- [Installing](#Installing)
-- [Usage](#Installing)
-- [Methods](#Installing)
+- [Prerrequisitos](#Installing)
+- [Instalando](#Installing)
+- [Uso](#Installing)
+- [Métodos](#Installing)
 
 ## Getting Started
 
-### Installing
+### Prerrequisitos
+Cree un archivo de credenciales en ~/.aws/credentials en Mac/Linux o bien en C:\Users\USERNAME\.aws\credentials en Windows.
+```
+[default]
+
+aws_access_key_id = your_access_key
+
+aws_secret_access_key = your_secret_key
+```
+
+### Instalando
 Para poder instalar el cliente solo basta con ejecutar el comando:
 ```
 npm i @stacksavings/dynamodb
 ```
-### Usage
+### Uso
 Para empezar a usarlo solo debe de incluirlo en tu código asi:
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 ```
-### Methods
+
+Tambien se puede configurar el <b>endpoint</b> de la Base de Datos para que apunte a una instancia local o remota. Por defecto el endpoint esta local por el puerto <b>8000</b>.
+```
+[Instancia local]
+
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB({endpoint: 'http://localhost:8000'})
+```
+
+```
+[Instancia remota]
+
+const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB({endpoint: 'https://ec2.ap-southeast-1.amazonaws.com'})
+```
+<br>
+Si tienes algun problema con dicho puerto puedes obtener una lista completa de opciones de tiempo de ejecución de DynamoDB, incluida -port, escriba este comando:
+```
+java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
+```
+
+### Métodos
 
 * <b>createTable:</b>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Create a new table in the database.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Crea una nuva tabla en la Base de Datos.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -58,7 +92,7 @@ promise.then(data => {
   logger.error(err)
 })
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,
@@ -95,12 +129,13 @@ promise.then(data => {
 ```
 * <b>insertItems:</b>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Create a new record in an existing table.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Crea un nuevo registro en una tabla existente.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const uuid = require('uuid')
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -120,7 +155,7 @@ promise.then(data => {
   logger.error(err)
 })
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,
@@ -128,12 +163,13 @@ promise.then(data => {
 }
 ```
 * <b>insertItemsBath:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Create multiple records in an existing table.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Crea multiples registros en una tabla existente.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const uuid = require('uuid')
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -171,7 +207,7 @@ promise.then(data => {
 })
 
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,
@@ -180,11 +216,12 @@ promise.then(data => {
 ```
 
 * <b>scanItems:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Returns one or more items and item attributes by accessing every item in a table.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Retorna uno o varios elementos de la tabla con sus atributos accediendo a cada registro de la misma.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -200,7 +237,7 @@ promise.then(data => {
 })
 
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,
@@ -209,11 +246,12 @@ promise.then(data => {
 }
 ```
 * <b>getItems:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Finds items based on primary key values.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Busca registros con el valor de del campo llave o campo primario.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -236,7 +274,7 @@ promise.then(data => {
 })
 
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,
@@ -246,11 +284,12 @@ promise.then(data => {
 ```
 
 * <b>deleteTable:</b>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;Delete a table from database.</p>
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Example to call it:</b>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;Borra una tabla de la Base de Datos.</p>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -264,7 +303,7 @@ promise.then(data => {
   logger.error(err)
 })
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;<b>Output:</b>
+&nbsp;&nbsp;&nbsp;&nbsp;<b>Salida:</b>
 ```
 {
   code: true,

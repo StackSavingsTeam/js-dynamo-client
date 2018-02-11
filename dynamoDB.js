@@ -1,65 +1,84 @@
 'use strict'
 
-const AWS = require('aws-sdk')
-AWS.config.update({region: 'us-east-1'})
-const awsdb = new AWS.DynamoDB({correctClockSkew: true})
-const documentClient = new AWS.DynamoDB.DocumentClient()
+const dynamoDB = class {
 
-const response = (resolve, reject, err, data, customMsj) => {
-  if (err) {
-    return reject({
-      code: false,
-      message: err.message + ' Codigo: ' + err.code + ' Estatus: ' + err.statusCode
-    })
-  } else {
-    return resolve({
-      code: true,
-      message: customMsj,
-      data: data
+  constructor(config){
+
+    const AWS = require('aws-sdk')
+    AWS.config.update({region: 'us-east-1'})
+
+    if(typeof config == 'undefined'){
+      var endpoint = 'http://localhost:8000'
+    }else{
+      var endpoint = (config.endpoint) ? config.endpoint : 'http://localhost:8000'
+    }
+
+    this.awsdb = new AWS.DynamoDB({
+                  correctClockSkew: true,
+                  endpoint: new AWS.Endpoint(endpoint)
+                })
+    this.DocumentClient = new AWS.DynamoDB.DocumentClient()
+
+  }
+  response (resolve, reject, err, data, customMsj) {
+    if (err) {
+      return reject({
+        code: false,
+        message: err.message + ' Codigo: ' + err.code + ' Estatus: ' + err.statusCode
+      })
+    } else {
+      return resolve({
+        code: true,
+        message: customMsj,
+        data: data
+      })
+    }
+  }
+  createTable (params) {
+    return new Promise((resolve, reject) => {
+      let awsdb = this.awsdb
+      awsdb.createTable(params, (err, data) => {
+        this.response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
+      })
     })
   }
-}
-
-const dynamoDB = {
-  createTable: (params) => {
+  deleteTable (params,config) {
     return new Promise((resolve, reject) => {
-      awsdb.createTable(params, (err, data) => {
-        response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
-      })
-    })
-  },
-  deleteTable: (params) => {
-    return new Promise((resolve, reject) => {
+      let awsdb = this.awsdb
       awsdb.deleteTable(params, (err, data) => {
-        response(resolve, reject, err, data, 'Table "' + params.TableName + '" deleted!')
+        this.response(resolve, reject, err, data, 'Table "' + params.TableName + '" deleted!')
       })
     })
-  },
-  insertItems: (params) => {
+  }
+  insertItems (params,config) {
     return new Promise((resolve, reject) => {
-      documentClient.put(params, (err, data) => {
-        response(resolve, reject, err, data, 'Insert success!')
+      let awsdb = this.DocumentClient
+      awsdb.put(params, (err, data) => {
+        this.response(resolve, reject, err, data, 'Insert success!')
       })
     })
-  },
-  insertItemsBath: (params) => {
+  }
+  insertItemsBath (params,config) {
     return new Promise((resolve, reject) => {
-      documentClient.batchWrite(params, (err, data) => {
-        response(resolve, reject, err, data, 'Insert success!')
+      let awsdb = this.DocumentClient
+      awsdb.batchWrite(params, (err, data) => {
+        this.response(resolve, reject, err, data, 'Insert success!')
       })
     })
-  },
-  getItems: (params) => {
+  }
+  getItems (params,config) {
     return new Promise((resolve, reject) => {
-      documentClient.query(params, (err, data) => {
-        response(resolve, reject, err, data, 'Query done!')
+      let awsdb = this.DocumentClient
+      awsdb.query(params, (err, data) => {
+        this.response(resolve, reject, err, data, 'Query done!')
       })
     })
-  },
-  scanItems: (params) => {
+  }
+  scanItems (params,config) {
     return new Promise((resolve, reject) => {
-      documentClient.scan(params, (err, data) => {
-        response(resolve, reject, err, data, 'Scan done!')
+      let awsdb = this.DocumentClient
+      awsdb.scan(params, (err, data) => {
+        this.response(resolve, reject, err, data, 'Scan done!')
       })
     })
   },
