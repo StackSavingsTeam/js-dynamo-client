@@ -53,7 +53,7 @@ var dynamoDB = require('@stacksavings/dynamodb')
 const dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({endpoint: 'https://ec2.ap-southeast-1.amazonaws.com'})
 ```
-
+<br>
 Si tienes algun problema con dicho puerto puedes obtener una lista completa de opciones de tiempo de ejecución de DynamoDB, incluida -port, escriba este comando:
 ```
 java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
@@ -68,6 +68,7 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -134,6 +135,7 @@ promise.then(data => {
 ```
 const uuid = require('uuid')
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -167,6 +169,7 @@ promise.then(data => {
 ```
 const uuid = require('uuid')
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -218,6 +221,7 @@ promise.then(data => {
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -247,6 +251,7 @@ promise.then(data => {
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -284,6 +289,7 @@ promise.then(data => {
 
 ```
 const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
