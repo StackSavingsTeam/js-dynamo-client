@@ -35,7 +35,7 @@ npm i @stacksavings/dynamodb
 ### Uso
 Para empezar a usarlo solo debe de incluirlo en tu código asi:
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
+var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB()
 ```
 
@@ -50,7 +50,7 @@ var dynamoDB = require('@stacksavings/dynamodb')
 ```
 [Instancia remota]
 
-const dynamoDB = require('@stacksavings/dynamodb')
+var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({endpoint: 'https://ec2.ap-southeast-1.amazonaws.com'})
 ```
 <br>
@@ -61,13 +61,13 @@ java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
 <br>
 Otra configuración es <b>region</b>, por defecto es 'us-east-1' pero puedes costumizarlo de la siguiente manera:
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
+var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({region: 'us-east-2'})
 ```
 <br>
 Este es un ejemplo junto otros parametros:
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
+var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({
                                endpoint: 'https://ec2.ap-southeast-1.amazonaws.com',
                                region: 'us-east-2'
@@ -82,8 +82,8 @@ const dynamoDB = require('@stacksavings/dynamodb')
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -149,8 +149,8 @@ promise.then(data => {
 
 ```
 const uuid = require('uuid')
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -183,8 +183,8 @@ promise.then(data => {
 
 ```
 const uuid = require('uuid')
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 var timeStamp = String(Math.floor(Date.now() / 1000));
@@ -235,8 +235,8 @@ promise.then(data => {
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -265,8 +265,8 @@ promise.then(data => {
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
@@ -303,8 +303,8 @@ promise.then(data => {
 &nbsp;&nbsp;&nbsp;&nbsp;<b>Ejemplo de como emplearlo:</b>
 
 ```
-const dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+var dynamoDB = require('@stacksavings/dynamodb')
+    dynamoDB = new dynamoDB()
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {
