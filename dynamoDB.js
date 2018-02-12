@@ -88,8 +88,9 @@ const dynamoDB = class {
   }
   deleteItems (params) {
   	return new Promise((resolve, reject) => {
-  	  documentClient.delete(params, (err, data)=> {
-          response(resolve, reject, err, data, 'Item deleted!')
+      let awsdb = this.DocumentClient
+  	  awsdb.delete(params, (err, data)=> {
+        this.response(resolve, reject, err, data, 'Item deleted!')
         })
   	})
   }
