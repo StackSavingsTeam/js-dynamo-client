@@ -1,6 +1,6 @@
 {
   "name": "@stacksavings/dynamodb",
-  "version": "1.1.41",
+  "version": "1.1.48",
   "description": "DynamoDB Client",
   "main": "dynamoDB.js",
   "scripts": {
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/StackSavingsTeam/js-dynamo-client#readme",
   "dependencies": {
-    "aws-sdk": "2.175.0",
+    "aws-sdk": "2.192.0",
     "uuid": "^3.2.1"
   },
   "devDependencies": {

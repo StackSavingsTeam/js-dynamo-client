@@ -4,19 +4,21 @@ const dynamoDB = class {
 
   constructor(config){
 
-    const AWS = require('aws-sdk')
-    AWS.config.update({region: 'us-east-1'})
-
     if(typeof config == 'undefined'){
       var endpoint = 'http://localhost:8000'
+      var region = 'us-east-1'
     }else{
       var endpoint = (config.endpoint) ? config.endpoint : 'http://localhost:8000'
+      var region = (config.region) ? config.region : 'us-east-1'
     }
 
-    this.awsdb = new AWS.DynamoDB({
-                  correctClockSkew: true,
-                  endpoint: new AWS.Endpoint(endpoint)
-                })
+    const AWS = require('aws-sdk')
+    AWS.config.update({
+      region: region,
+      endpoint: endpoint
+    });
+
+    this.awsdb = new AWS.DynamoDB()
     this.DocumentClient = new AWS.DynamoDB.DocumentClient()
 
   }
@@ -44,7 +46,7 @@ const dynamoDB = class {
       })
     })
   }
-  deleteTable (params,config) {
+  deleteTable (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.awsdb
       awsdb.deleteTable(params, (err, data) => {
@@ -52,7 +54,7 @@ const dynamoDB = class {
       })
     })
   }
-  insertItems (params,config) {
+  insertItems (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.put(params, (err, data) => {
@@ -60,7 +62,7 @@ const dynamoDB = class {
       })
     })
   }
-  insertItemsBath (params,config) {
+  insertItemsBath (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.batchWrite(params, (err, data) => {
@@ -68,7 +70,7 @@ const dynamoDB = class {
       })
     })
   }
-  getItems (params,config) {
+  getItems (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.query(params, (err, data) => {
@@ -76,7 +78,7 @@ const dynamoDB = class {
       })
     })
   }
-  scanItems (params,config) {
+  scanItems (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.scan(params, (err, data) => {
