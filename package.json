@@ -1,6 +1,6 @@
 {
   "name": "@stacksavings/dynamodb",
-  "version": "1.1.48",
+  "version": "1.1.5",
   "description": "DynamoDB Client",
   "main": "dynamoDB.js",
   "scripts": {
@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/StackSavingsTeam/js-dynamo-client.git"
   },
-  "author": "Stacksavings (https://site.stacksavings.com)",
+  "author": [
+    "Stacksavings (https://site.stacksavings.com)",
+    "dmolina101 (https://dmolina101.github.io)"
+  ],
   "maintainers": [
     "dmolina101 <dmolina101@gmail.com>",
     "hendrixroa <hendrix.alex87@gmail.com>"

@@ -58,6 +58,21 @@ Si tienes algun problema con dicho puerto puedes obtener una lista completa de o
 ```
 java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
 ```
+<br>
+Otra configuración es <b>region</b>, por defecto es 'us-east-1' pero puedes costumizarlo de la siguiente manera:
+```
+const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB({region: 'us-east-2'})
+```
+<br>
+Este es un ejemplo junto otros parametros:
+```
+const dynamoDB = require('@stacksavings/dynamodb')
+      dynamoDB = new dynamoDB({
+                               endpoint: 'https://ec2.ap-southeast-1.amazonaws.com',
+                               region: 'us-east-2'
+                             })
+```
 
 ### Métodos
 
