@@ -36,7 +36,7 @@ npm i @stacksavings/dynamodb
 Para empezar a usarlo solo debe de incluirlo en tu código asi:
 ```
 var dynamoDB = require('@stacksavings/dynamodb')
-      dynamoDB = new dynamoDB()
+    dynamoDB = new dynamoDB()
 ```
 
 Tambien se puede configurar el <b>endpoint</b> de la Base de Datos para que apunte a una instancia local o remota. Por defecto el endpoint esta local por el puerto <b>8000</b>.
