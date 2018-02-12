@@ -23,8 +23,8 @@ Cree un archivo de credenciales en ~/.aws/credentials en Mac/Linux o bien en C:\
 [default]
 
 aws_access_key_id = your_access_key
-
 aws_secret_access_key = your_secret_key
+region = your_region
 ```
 
 ### Instalando
