@@ -24,8 +24,8 @@ const dynamoDB = class {
     let port = 8000
     let localEndpoint = 'http://localhost:' + port
     let awsRegion = 'us-east-1'
-
     let endpoint,region
+    
     if(typeof config == 'undefined'){
       endpoint = localEndpoint
       region = awsRegion
