@@ -1,48 +1,67 @@
 'use strict'
 
+let response =(resolve, reject, err, data, customMsj) =>{
+  if (err) {
+    return reject({
+      code: false,
+      message: err.message,
+      codeDescrip: err.code,
+      status: err.statusCode
+    })
+  } else {
+    return resolve({
+      code: true,
+      message: customMsj,
+      data: data
+    })
+  }
+}
+
+
 const dynamoDB = class {
 
   constructor(config){
 
+    let port = 8080
+    let localEndpoint = 'http://localhost:' + port
+    let awsRegion = 'us-east-1'
+
+    let endpoint,region
     if(typeof config == 'undefined'){
-      var endpoint = 'http://localhost:8000'
-      var region = 'us-east-1'
+      endpoint = localEndpoint
+      region = awsRegion
     }else{
-      var endpoint = (config.endpoint) ? config.endpoint : 'http://localhost:8000'
-      var region = (config.region) ? config.region : 'us-east-1'
+      endpoint = (config.endpoint) ? config.endpoint : localEndpoint
+      region = (config.region) ? config.region : awsRegion
     }
+
 
     const AWS = require('aws-sdk')
-    AWS.config.update({
+
+    //var config = {accessKeyId: 'AKID', secretAccessKey: 'SECRET', region: awsRegion};
+    //AWS.config.update(config);
+
+    let config2 = {
       region: region,
-      endpoint: endpoint
-    });
-
-    this.awsdb = new AWS.DynamoDB()
-    this.DocumentClient = new AWS.DynamoDB.DocumentClient()
-
-  }
-  response (resolve, reject, err, data, customMsj) {
-    if (err) {
-      return reject({
-        code: false,
-        message: err.message,
-        codeDescrip: err.code,
-        status: err.statusCode
-      })
-    } else {
-      return resolve({
-        code: true,
-        message: customMsj,
-        data: data
-      })
+      endpoint: endpoint,
+      accessKeyId : 'AKID',
+      secretAccessKey : 'SECRET',
+      port: port
     }
+
+    AWS.config.update(config2);
+
+    this.awsdb = new AWS.DynamoDB(config2)
+    this.DocumentClient = new AWS.DynamoDB.DocumentClient(config2)
+
   }
+
   createTable (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.awsdb
+      console.log(JSON.stringify(params))
       awsdb.createTable(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
+        response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
       })
     })
   }
@@ -50,7 +69,7 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.awsdb
       awsdb.deleteTable(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Table "' + params.TableName + '" deleted!')
+        response(resolve, reject, err, data, 'Table "' + params.TableName + '" deleted!')
       })
     })
   }
@@ -58,7 +77,7 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.put(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Insert success!')
+        response(resolve, reject, err, data, 'Insert success!')
       })
     })
   }
@@ -66,7 +85,8 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.batchWrite(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Insert success!')
+
+        response(resolve, reject, err, data, 'Insert success!')
       })
     })
   }
@@ -74,7 +94,7 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.query(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Query done!')
+        response(resolve, reject, err, data, 'Query done!')
       })
     })
   }
@@ -82,7 +102,7 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.scan(params, (err, data) => {
-        this.response(resolve, reject, err, data, 'Scan done!')
+        response(resolve, reject, err, data, 'Scan done!')
       })
     })
   }
@@ -90,7 +110,7 @@ const dynamoDB = class {
   	return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
   	  awsdb.delete(params, (err, data)=> {
-        this.response(resolve, reject, err, data, 'Item deleted!')
+        response(resolve, reject, err, data, 'Item deleted!')
         })
   	})
   }
