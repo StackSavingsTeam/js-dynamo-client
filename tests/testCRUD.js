@@ -1,7 +1,7 @@
 'use strict';
 
 var config = require('./config');
-const dynamoDBIncl = require('./dynamodb')
+const dynamoDBIncl = require('../dynamodb')
 const dynamoDB = new dynamoDBIncl({endpoint: config.dynamoendpoint})
 const logger = require('@stacksavings/utils').log()
 

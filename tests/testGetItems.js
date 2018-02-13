@@ -1,7 +1,6 @@
 'use strict'
 
-//const dynamoDB = require('@stacksavings/dynamodb')
-const dynamoDB = require('./dynamoDB')
+const dynamoDB = require('../dynamoDB')
 const logger = require('@stacksavings/utils').log()
 
 const parameters = {

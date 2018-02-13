@@ -55,17 +55,20 @@ var dynamoDB = require('@stacksavings/dynamodb')
 ```
 <br>
 Si tienes algun problema con dicho puerto puedes obtener una lista completa de opciones de tiempo de ejecución de DynamoDB, incluida -port, escriba este comando:
+
 ```
 java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -help
 ```
 <br>
 Otra configuración es <b>region</b>, por defecto es 'us-east-1' pero puedes costumizarlo de la siguiente manera:
+
 ```
 var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({region: 'us-east-2'})
 ```
 <br>
 Este es un ejemplo junto otros parametros:
+
 ```
 var dynamoDB = require('@stacksavings/dynamodb')
       dynamoDB = new dynamoDB({
