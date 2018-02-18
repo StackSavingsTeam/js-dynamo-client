@@ -21,33 +21,19 @@ const dynamoDB = class {
 
   constructor(config){
 
-    let port = 8000
-    let localEndpoint = 'http://localhost:' + port
-    let awsRegion = 'us-east-1'
-    let endpoint,region
-    
-    if(typeof config == 'undefined'){
-      endpoint = localEndpoint
-      region = awsRegion
-    }else{
-      endpoint = (config.endpoint) ? config.endpoint : localEndpoint
-      region = (config.region) ? config.region : awsRegion
-    }
+    let configAws = {}
+
+    if(config && config.endpoint){configAws.endpoint = config.endpoint}
+    if(config && config.region){configAws.region = config.region}else{configAws.region = 'us-east-1'}
+    if(config && config.accessKeyId){configAws.accessKeyId = config.accessKeyId}
+    if(config && config.secretAccessKey){configAws.secretAccessKey = config.secretAccessKey}
 
     const AWS = require('aws-sdk')
 
-    let config2 = {
-      region: region,
-      endpoint: endpoint,
-      accessKeyId : 'AKID',
-      secretAccessKey : 'SECRET',
-      port: port
-    }
+    AWS.config.update(configAws);
 
-    AWS.config.update(config2);
-
-    this.awsdb = new AWS.DynamoDB(config2)
-    this.DocumentClient = new AWS.DynamoDB.DocumentClient(config2)
+    this.awsdb = new AWS.DynamoDB(configAws)
+    this.DocumentClient = new AWS.DynamoDB.DocumentClient(configAws)
 
   }
 
