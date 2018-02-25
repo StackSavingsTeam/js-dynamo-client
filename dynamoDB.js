@@ -25,6 +25,7 @@ const dynamoDB = class {
 
     if(config && config.endpoint){configAws.endpoint = config.endpoint}
     if(config && config.region){configAws.region = config.region}else{configAws.region = 'us-east-1'}
+    if(config && config.port){configAws.port = config.port}
     if(config && config.accessKeyId){configAws.accessKeyId = config.accessKeyId}
     if(config && config.secretAccessKey){configAws.secretAccessKey = config.secretAccessKey}
 
