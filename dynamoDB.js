@@ -21,16 +21,17 @@ const dynamoDB = class {
 
   constructor(config){
 
-    let configAws = {}
+    if (!config) {config = {}}
 
-    if(config && config.endpoint){configAws.endpoint = config.endpoint}
-    if(config && config.region){configAws.region = config.region}else{configAws.region = 'us-east-1'}
-    if(config && config.port){configAws.port = config.port}
-    if(config && config.accessKeyId){configAws.accessKeyId = config.accessKeyId}
-    if(config && config.secretAccessKey){configAws.secretAccessKey = config.secretAccessKey}
+    let configAws = {
+      endpoint : config.endpoint ? config.endpoint : '',
+      region : config.region ? config.region : 'us-east-1',
+      port : config.port ? config.port : '',
+      accessKeyId : config.accessKeyId ? config.accessKeyId : '',
+      secretAccessKey : config.secretAccessKey ? config.secretAccessKey : ''
+    }
 
     const AWS = require('aws-sdk')
-
     AWS.config.update(configAws);
 
     this.awsdb = new AWS.DynamoDB(configAws)
