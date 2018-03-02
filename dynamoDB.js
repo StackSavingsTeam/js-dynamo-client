@@ -25,7 +25,7 @@ const dynamoDB = class {
     let localEndpoint = 'http://localhost:' + port
     let awsRegion = 'us-east-1'
     let endpoint,region
-    
+
     if(typeof config == 'undefined'){
       endpoint = localEndpoint
       region = awsRegion
@@ -54,7 +54,6 @@ const dynamoDB = class {
   createTable (params) {
     return new Promise((resolve, reject) => {
       let awsdb = this.awsdb
-      console.log(JSON.stringify(params))
       awsdb.createTable(params, (err, data) => {
         response(resolve, reject, err, data, 'Table ' + params.TableName + ' created!')
       })
@@ -80,7 +79,6 @@ const dynamoDB = class {
     return new Promise((resolve, reject) => {
       let awsdb = this.DocumentClient
       awsdb.batchWrite(params, (err, data) => {
-
         response(resolve, reject, err, data, 'Insert success!')
       })
     })

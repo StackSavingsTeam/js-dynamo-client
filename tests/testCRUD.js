@@ -19,7 +19,7 @@ const parameters = {
   }
 }
 
-/*const promise = dynamoDB.createTable(parameters)
+const promise = dynamoDB.createTable(parameters)
 promise.then(data => {
   logger.info(data)
   insertTable(parameters.TableName)
@@ -29,7 +29,7 @@ promise.then(data => {
   }else{
     logger.error(err)
   }
-})*/
+})
 
 function insertTable(tabla){
   logger.info('insertando registro')
