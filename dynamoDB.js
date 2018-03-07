@@ -21,9 +21,14 @@ const dynamoDB = class {
 
   constructor(config){
     const AWS = require('aws-sdk')
-    if(config === {}){
-      this.awsdb = new AWS.DynamoDB()
-      this.DocumentClient = new AWS.DynamoDB.DocumentClient()
+    if(config.isProduction){
+      let configProd = {
+        region: 'us-east-1',
+        accessKeyId : config.accessKeyId,
+        secretAccessKey : config.secretAccessKey
+      }
+      this.awsdb = new AWS.DynamoDB(configProd)
+      this.DocumentClient = new AWS.DynamoDB.DocumentClient(configProd)
     }else{
       let configLocal = {
         region: 'us-east-1',
