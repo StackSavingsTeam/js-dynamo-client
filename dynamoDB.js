@@ -27,6 +27,7 @@ const dynamoDB = class {
         accessKeyId : config.accessKeyId,
         secretAccessKey : config.secretAccessKey
       }
+      AWS.config.update(configProd)
       this.awsdb = new AWS.DynamoDB(configProd)
       this.DocumentClient = new AWS.DynamoDB.DocumentClient(configProd)
     }else{
